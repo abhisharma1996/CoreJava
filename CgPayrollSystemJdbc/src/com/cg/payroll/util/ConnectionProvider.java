@@ -18,7 +18,7 @@ public class ConnectionProvider {
 			String url=dbProperties.getProperty("url");
 			String user=dbProperties.getProperty("user");
 			String password=dbProperties.getProperty("password");
-			Class.forName(driver);
+			Class.forName(driver);//register the driver
 			conn=DriverManager.getConnection(url, user, password);
 			return conn;
 		}catch(IOException e){
