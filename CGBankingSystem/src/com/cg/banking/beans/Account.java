@@ -1,20 +1,34 @@
 package com.cg.banking.beans;
 
+import java.util.ArrayList;
+
 public class Account {
-	
 	private int pinNumber;
+	private static  int  transactionId_counter=1111111;
 	private String accountType,status;
 	private float accountBalance;
 	private long accountNo;	
+	Transaction tran;
 	private static long account_counter=100000;
-	private int pinNumber_counter=1111;
+	private static int pinNumber_counter=1111;
+	ArrayList<Transaction> trans=new ArrayList<>();
 	
+
+	public ArrayList<Transaction> getTrans() {
+		return trans;
+	}
+
+	public void setTran(float amount,String transactionType) {
+		Transaction t=new Transaction(transactionId_counter++, amount, transactionType) ;
+		trans.add(t);
+	}
+
 	public Account(String accountType, float accountBalance) {
 		super();
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;
-		this.accountNo=++account_counter;
-		this.pinNumber=++pinNumber_counter;
+		this.accountNo=account_counter++;
+		this.pinNumber=pinNumber_counter++;
 	}
 
 	public Account() {
@@ -66,6 +80,16 @@ public class Account {
 
 	public long getAccountNo() {
 		return accountNo;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Account [pinNumber=" + pinNumber + ", accountType="
+				+ accountType + ", status=" + status + ", accountBalance="
+				+ accountBalance + ", accountNo=" + accountNo + ", trans="
+				+ trans + "]";
 	}
 
 	public void setAccountNo(long accountNo) {
